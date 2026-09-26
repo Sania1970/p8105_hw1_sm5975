@@ -54,3 +54,28 @@ ggplot (penguins, aes(x = bill_length_mm,
   flipper_bill_plot
   ggsave("flipper_bill_plot.pdf")
 ```
+
+#PROBLEM 2
+
+```{r}
+penguins_df = tibble (
+  norm_samp = rnorm(10, mean = 1),
+  norm_samp_pos = norm_samp > 0, 
+  vec_char = c ("My", "name", "is", "Sania", "and", "I", "am", "in", "epi", "department"),
+  vec_factor = factor(c("a","b","c","a","b","c","a","b","c","a"))
+)
+```
+
+```{r}
+mean(pull(penguins_df, norm_samp))
+mean(pull(penguins_df,norm_samp_pos))
+mean(pull(penguins_df, vec_char))
+mean(pull(penguins_df, vec_factor))
+```
+
+```{r results = 'hide'}
+as.numeric(pull(penguins_df,norm_samp_pos))
+as.numeric(pull(penguins_df, vec_char))
+as.numeric(pull(penguins_df, vec_factor))
+```
+
