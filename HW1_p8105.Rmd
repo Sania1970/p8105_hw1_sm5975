@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #Loading libraries for this experiment 
-
+#PROBLEM 1
 ```{r}
 library(tidyverse)
 ```
@@ -19,9 +19,6 @@ library(tidyverse)
 
 ```{r}
 data("penguins", package = "palmerpenguins")
-```
-
-```{r}
 names (penguins)
 penguins = janitor::clean_names(penguins)
 ```
@@ -33,17 +30,27 @@ penguins
 ```{r}
 skimr::skim(penguins)
 ```
-# The size of the data set (using nrow and ncol)
-
+In this data set, the table contains the measurements of different penguin parts. This table contains `r nrow(penguins)` rows  and `r ncol(penguins)` columns. From the skimmer `r skimr::skim(penguins)` We can see flipper length which has a mean of 200.92 mm and a standard deviation of 14.062mm. The bill length has a mean of 43.92 mm and a standard deviation of 5.46 mm. 
 ```{r}
-# There are 344 rows and 8 columns in the table with the dataset
+# There are 344 rows and 8 columns in the table with the data set
 penguins
 nrow(penguins)
 ncol(penguins)
 ```
 
-#the mean flipper length
-```{r}
+```{r Flipper length mean}
 # Rounding to one decimal point for simplicity, mean found to be 200.9
 round(mean(penguins$flipper_length_mm, na.rm = TRUE), 1)
+```
+
+The mean was found to be `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 1)` mm
+```{r}
+# This scatter plot shows the bill length and adjacent flipper length for three different penguin species which are Adelie, Chinstrap, and Gentoo. 
+library (tidyverse) 
+flipper_bill_plot =
+ggplot (penguins, aes(x = bill_length_mm, 
+   y = flipper_length_mm, color = species)) +
+   geom_point()
+  flipper_bill_plot
+  ggsave("flipper_bill_plot.pdf")
 ```
