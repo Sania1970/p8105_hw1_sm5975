@@ -1,0 +1,49 @@
+---
+title: "HW1_P8105"
+author: "Sania Sheifuddin"
+date: "2026-09-26"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Loading libraries for this experiment 
+
+```{r}
+library(tidyverse)
+```
+
+# The data in this dataset, including names / values of important variables
+
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
+```{r}
+names (penguins)
+penguins = janitor::clean_names(penguins)
+```
+
+```{r}
+penguins
+```
+
+```{r}
+skimr::skim(penguins)
+```
+# The size of the data set (using nrow and ncol)
+
+```{r}
+# There are 344 rows and 8 columns in the table with the dataset
+penguins
+nrow(penguins)
+ncol(penguins)
+```
+
+#the mean flipper length
+```{r}
+# Rounding to one decimal point for simplicity, mean found to be 200.9
+round(mean(penguins$flipper_length_mm, na.rm = TRUE), 1)
+```
