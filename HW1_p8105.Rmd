@@ -29,8 +29,13 @@ penguins
 
 ```{r}
 skimr::skim(penguins)
+mean(pull(penguins, flipper_length_mm), na.rm = TRUE)
+sd(pull(penguins, flipper_length_mm), na.rm = TRUE)
+mean(pull(penguins, bill_length_mm), na.rm = TRUE)
+sd(pull(penguins, bill_length_mm), na.rm = TRUE)
 ```
-In this data set, the table contains the measurements of different penguin parts. This table contains `r nrow(penguins)` rows  and `r ncol(penguins)` columns. From the skimmer `r skimr::skim(penguins)` We can see flipper length which has a mean of 200.92 mm and a standard deviation of 14.062mm. The bill length has a mean of 43.92 mm and a standard deviation of 5.46 mm. 
+In this data set, the table contains the measurements of different penguin parts. This table contains `r nrow(penguins)` rows  and `r ncol(penguins)` columns. The flipper length which has a mean of `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)` mm and a standard deviation of `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)`mm. The bill length has a mean of `r mean(pull(penguins, bill_length_mm), na.rm = TRUE)` mm and a standard deviation of `r sd(pull(penguins, bill_length_mm), na.rm = TRUE)`mm. 
+
 ```{r}
 # There are 344 rows and 8 columns in the table with the data set
 penguins
@@ -78,4 +83,5 @@ as.numeric(pull(penguins_df,norm_samp_pos))
 as.numeric(pull(penguins_df, vec_char))
 as.numeric(pull(penguins_df, vec_factor))
 ```
+#When applying as.numeric function to the logical character, it converts it clearly as it is already numeric like as seen in the results. Whereas for the character data, it only converts to numbers if the strings look like numbers however since they contain non numeric texts, the R says NA with a coercion warning as there is no alid numeric equivalent. The vec_factor converts it to integral level codes rather than the original labels or values. On vec_factor , it would silently compute the mean of the random level codes rather than anything meaningful. This shows that Rs conversion follows internal storage and not any intended meaning. 
 
